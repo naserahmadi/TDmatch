@@ -1,0 +1,51 @@
+Sent,country,table
+United states has 3 times the cases of Canada,United States-Canada,total_confirmed
+The number of cases in France is higher than in Germany.,France-Germany,total_confirmed
+The total death in Russia is below 10000.,Russia,total_deaths
+France has the most confirmed cases in Europe. ,France,total_confirmed
+China and Japan have a total of over 5 million cases,China-Japan,total_confirmed
+death number in Iran is higher than the US,Iran-US,total_deaths
+The death rate in mexico is much higher than in ireland,Mexico-Ireland,total_deaths-total_confirmed
+there were 30 total deaths in spain on march 12,Spain,total_deaths
+The death rate in america more than china,USA-China,total_deaths-total_confirmed
+The death rate in the world is 20%,World,total_deaths-total_confirmed
+The death rate is 50%,World,total_deaths-total_confirmed
+The death rate in America is much higher than in France.,USA-France,total_deaths-total_confirmed
+There are 800 cases in Mexico,Mexico,total_confirmed
+The recovery rate in Italy is much higher than in France.,Italy-France,total_recovered-total_confirmed
+the coronavirus death rate in italy is over 0.1%,Italy,total_deaths-total_confirmed
+The number of COVID-19 total confirmed cases in Iceland in April is greater than 1000.,Iceland,total_confirmed
+there are 1 million cases in china,China,total_confirmed
+number of cases in france is 100000,France,total_confirmed
+there are lower than 20 cases  in greece,Greece,total_confirmed
+The death rate in US is higher than italy,US-Italy,total_deaths-total_confirmed
+The number of deaths in Italy is 8000,Italy,total_deaths
+43 new deaths in the Netherlands,Netherlands,new_deaths
+There are 800 deaths in Netherlands.,Netherlands,total_deaths
+Greece has 20 deaths,Greece,total_deaths
+Death count in France is 120 persons,France,total_deaths
+"""The death rate in Italy is much higher than in Germany.""",Italy-Germany,total_deaths-total_confirmed
+There are 2009 deaths in Luxembourg ,Luxembourg,total_deaths
+"The death rate in Italy is much higher than in France.""",Italy-France,total_deaths-total_confirmed
+Russia has less than 25 cases,Russia,total_confirmed
+There are 30 cases in Morocco,Morocco,total_confirmed
+Qatar has 1000 cases so far.,Qatar,total_confirmed
+There are 800 cases in vietnam,Vietnam,total_confirmed
+Algeria has 17 cases,Algeria,total_confirmed
+There are 1200 cases in Peru,Peru,total_confirmed
+There are 190 cases in France.,France,total_confirmed
+There are more than 1000 cases in France,France,total_confirmed
+There are 800 cases in Italy.,Italy,total_confirmed
+There are 30 cases in Colombia,Colombia,total_confirmed
+The death rate in Switzerland is much higher than in France.,Switzerland-France,total_deaths-total_confirmed
+Italy death count is 3000,Italy,total_deaths
+the number of dead people in France is lower than italy,France-Italy,total_deaths-total_confirmed
+italy has less cases than france,Italy-France,total_confirmed
+There are no cases in Turkey,Turkey,total_confirmed
+There are 15.000 cases in Italy.,Italy,total_confirmed
+USA has more then 100000 confirmed cases of coronavirus,USA,total_confirmed
+The death rate is above 4 %,World,total_deaths-total_confirmed
+There are 200000 deaths in China.,China,total_deaths
+2800 new cases found in Italy,Italy,total_confirmed
+"Mexico will have 10,000 cases by the end of april",Mexico,total_confirmed
+corona virus death rate in the world is 3%,World,total_deaths-total_confirmed
