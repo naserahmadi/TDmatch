@@ -1,5 +1,6 @@
 import re 
 import pickle
+import csv
 
 import re
 def normalize_text(text):
@@ -27,15 +28,16 @@ from gensim.parsing.preprocessing import remove_stopwords
 import nltk
 ps = nltk.stem.PorterStemmer()
 
+def read_csv(file,hasHeader):
+    all_claims = []
+    with open(file) as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        if hasHeader:
+            next(csv_reader)
+        for r in csv_reader:
+            all_claims.append(' '.join(str(rr) for rr in r))
 
-def return_two_grams(text):
-    tokens = tokenize.word_tokenize(remove_stopwords(text))
-    two_grams = set()
-    for i in range(0,len(tokens)-1):
-        #two_grams.add(str( (tokens[i]) + ' ' + (tokens[i+1])))
-        two_grams.add(str( ps.stem(tokens[i]) + ' ' + ps.stem(tokens[i+1])))
-    return two_grams
-
+    return all_claims
 
 
 def sentencize_text(p):
@@ -47,34 +49,12 @@ def sentencize_text(p):
     return sents   
 
 
-
 from numpy import dot
 from numpy.linalg import norm
 from nltk import tokenize
 from nltk.tokenize import word_tokenize
 from scipy import spatial
 from sklearn.metrics.pairwise import cosine_similarity
-
-
-def cosine_distance (model, word,target_list , num) :
-    cosine_dict ={}
-    word_list = []
-
-    a = model.infer_vector(word_tokenize(normalize_text(word)))
-
-    for item in target_list :
-        if item != '' :
-
-            b = model.infer_vector(word_tokenize(normalize_text(item)))
-            
-
-            cosine_dict[item] = spatial.distance.cosine(a, b)
-            
-    dist_sort=sorted(cosine_dict.items(), key=lambda dist: dist[1],reverse = True)
-    for item in dist_sort:
-        word_list.append((item[0], item[1]))
-    return word_list[0:num]
-
 
 import pandas as pd
 
