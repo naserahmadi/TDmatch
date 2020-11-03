@@ -1,5 +1,5 @@
 # TDmatch
-=======
+
 TDmatch is a Python library developed to perform matching tasks in three categories:
  * Text to Data which matches tuples of a table to text docuemts
  * Text to Structured text matches hierarchical taxonomy concepts to text docuemtns
@@ -17,4 +17,26 @@ We used 4 datasets in testing different tasks:
  * Two fact checking datasets: **Politifact** and **Snopes** which we use for Text to Text matching. These datasets are presented in [That-is-a-Known-Lie](https://github.com/sshaar/That-is-a-Known-Lie)
  * Two datasets for Text to Data matching: **IMDB** which is created form  [IMDB top 250 movies of all time](https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&view=simple). **CoronaCheck** dataset is presented in [Scrutinizer](https://github.com/geokaragiannis/statchecker)
 
+
+# How to run
+1. Run `generate_graph.py` on two sets of documents to generate the graph.
+
+The script requires some command line parameters:
+ * `first_file` which is the directory that contains the first corpus in csv format.
+ * `second_file` which is the directory that contains the second corpus in csv format.
+ * `output_file` name of the generated graph which will be save in directory `graphs/`
+ * `scenario` can be used to define the task: `t2d` for Text to Data, `t2t` for Text to Text and `t2s` for Text to Structured Text.
+ * `tokens` define the maximum number of tkens allowed in a multi token term
+
+2. Run `model_train.py` to generate random walks on the graph and traind a word embedding model.
+
+It requires some parameters:
+ * `graph_file` which is the directory that contains the graph file.
+ * `random_walks` number of random walks per each node.
+ * `walk_length` length of each walk.
+ * `model_class` generated model can be **Word2Vec**(`w2v`) or **Fasttext**(`ft`). 
+ * `model_name` the name which model will be saved in `models/`.
+
+
+3. Run `generate_tests` to generate results for the model. 
 
