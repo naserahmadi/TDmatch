@@ -13,10 +13,11 @@ def graph_generator(firstDocs,secondDocs,configuration ):
 
     for doc in tqdm(firstDocs):
         i+=1
+        if len(doc) > 1: doc = ' '.join([r for r in doc])
         doc_name = str('FM'+str(i))
-        G.add_node(doc_name , label= doc_name, type='Metadata')
-        md1_ids[doc_name] = ' '.join([r for r in doc])
-        id_md1[' '.join(doc)] = doc_name
+        G.add_node(doc_name , label= doc_name, type='Metadata1')
+        md1_ids[doc_name] = doc
+        id_md1[doc] = doc_name
 
         j=0
         for cl in doc:
@@ -41,7 +42,7 @@ def graph_generator(firstDocs,secondDocs,configuration ):
         i += 1
         text = remove_stopwords(doc)
         doc_name = str('SM'+str(i))
-        G.add_node(doc_name , label= doc_name, type='Metadata')
+        G.add_node(doc_name , label= doc_name, type='Metadata2')
         md2_ids[doc_name] = doc
         id_md2[doc] = doc_name
 
