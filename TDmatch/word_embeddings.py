@@ -16,6 +16,7 @@ def train_model(docs,configuration):
 		model = Word2Vec(size=configuration['model_vec'], min_count=1, window=configuration['model_window'], sg=configuration['model_sg'], seed=0, workers = 4)
 	
 	model.build_vocab(tagged_data)
+	
 	model.train(tagged_data, total_examples=model.corpus_count, epochs=configuration['model_epochs'])
 	print('model is ready')
 

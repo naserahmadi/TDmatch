@@ -2,7 +2,7 @@ from TDmatch.utils import *
 from TDmatch.graphUtils import *
 import pandas as pd
 import os
-
+import pickle
 import argparse
 if not os.path.exists('graphs'):	os.makedirs('graphs')
 
@@ -10,7 +10,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--first_file', required=True)
     parser.add_argument('-ii', '--second_file', required=True)
-    parser.add_argument('--scenario', required=False)
+    parser.add_argument('--scenario', required=False,default='t2d')
     parser.add_argument('--tokens', required=False, default=3)
     parser.add_argument('--normalize', required=False, default=True)
     parser.add_argument('--bucketing', required=False, default=False)
@@ -32,7 +32,8 @@ configuration = {
 docs = read_csv(args.first_file,True)
 docs2 = read_csv(args.second_file,True)
 
-
 graph = graph_generator(docs,docs2,configuration)
 
-nx.write_gml(graph,'graphs/' + args.output_file+'.gml')
+nx.write_gml(graph[0],'graphs/' + args.output_file+'.gml')
+pickle.dump(graph[1],open('graphs/'+args.output_file+'_metadata.pkl','wb'))
+

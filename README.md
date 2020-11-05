@@ -39,4 +39,8 @@ It requires some parameters:
 
 
 3. Run `generate_tests` to generate results for the model. 
-
+ * `model_address` is the address of generated model.
+ * `graph_address` which is the address of generated graph.
+ * `model_type` type of the model which produces the reuslts. (`w2v` or `ft`) 
+ * `golds` which is the ground truth in the case you want to do the evaluations.
+ * `direction` defines the direction of matching process (`r2l` or `l2r`).

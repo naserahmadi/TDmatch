@@ -1,8 +1,34 @@
 import re 
 import pickle
 import csv
-
+from tqdm import tqdm
 import re
+
+
+
+def  compare_lists(model,md1,md2):
+    res = {}
+    for m1 in tqdm(md1,position=0):
+        if m1 in model.wv:
+            res[m1] = distance_w2v(model,m1,md2,len(md2))
+    return res
+
+def evaluate_results(preds,golds,maps,K):
+    i=0
+    MP,MR,HASP = 0,0,0
+    for md in preds:
+        if maps[md] not in golds:  continue
+        i+=1
+        pr = [maps[m] for (m,score) in preds[md]][0:K]
+        gd = golds[maps[md]]
+        MP += MAP_K(gd,pr)
+        MR += MRR(gd,pr)
+        HASP += HAS_POSITIVE(gd,pr)
+    return {'MAP': format(MP/i,'0.3f'), 'MRR': format(MR/i,'0.3f'),'HASP': format(HASP/i,'0.3f')}
+
+
+
+
 def normalize_text(text):
     text = re.sub(r'#+', ' ', text )
     text = re.sub(r'@[A-Za-z0-9]+', ' ', text)
@@ -31,11 +57,12 @@ ps = nltk.stem.PorterStemmer()
 def read_csv(file,hasHeader):
     all_claims = []
     with open(file) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
+        csv_reader = csv.reader(csv_file, delimiter=',',quotechar='\'')
         if hasHeader:
             next(csv_reader)
         for r in csv_reader:
-            all_claims.append(' '.join(str(rr) for rr in r))
+            if type(r) == list and len(r)>1: all_claims.append([str(rr).lower() for rr in r])
+            else: all_claims.append(str(r[0]).lower())
 
     return all_claims
 
@@ -64,8 +91,7 @@ def distance_w2v (model, word,target_list , num) :
     word_list = []
 
     for item in target_list :
-        if item not in model.wv:
-            continue
+        if item not in model.wv: continue
             
         cosine_dict[item] = model.wv.similarity(word,item)
             

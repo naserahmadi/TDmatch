@@ -13,7 +13,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--graph_file', required=True)
     parser.add_argument('-o','--model_name', required=True)
-    parser.add_argument('--random_walks', required=False, default=100)
+    parser.add_argument('--random_walks', required=False, default=10)
     parser.add_argument('--walks_length', required=False, default=25)
     #parser.add_argument('--save_walks', required=False, default=True)
     parser.add_argument('--model_class', required=False, default='w2v')
@@ -40,7 +40,6 @@ configuration = {
 G = nx.read_gml(args.graph_file)
 
 random_walks = generate_walks(G,configuration)
-
 if configuration['save_walks']:
     pickle.dump(random_walks,open('walks/random_walks','wb'))
 

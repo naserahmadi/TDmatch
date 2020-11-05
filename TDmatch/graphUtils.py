@@ -2,49 +2,56 @@ import networkx as nx
 import csv
 import random
 from tqdm import tqdm
-
+import pickle
 
 
 def graph_generator(firstDocs,secondDocs,configuration ):
+    metadata_maps = {}
     i = 0
     G=nx.Graph()
-    md1_ids = {}
-    id_md1 = {}
 
     for doc in tqdm(firstDocs):
         i+=1
-        if len(doc) > 1: doc = ' '.join([r for r in doc])
+        if type(doc) ==list: text = ' '.join([r for r in doc])
+        else: text = doc.lower()
         doc_name = str('FM'+str(i))
+
+        metadata_maps[doc_name] = text
+        metadata_maps[text] = doc_name
+
         G.add_node(doc_name , label= doc_name, type='Metadata1')
-        md1_ids[doc_name] = doc
-        id_md1[doc] = doc_name
 
         j=0
-        for cl in doc:
-            j+=1
-            if configuration['scenario'] == 't2d':
+        if configuration['scenario'] == 't2d':
+            for cl in doc:
+                j+=1
                 col_name = str('COL'+str(j))
-
                 if not G.has_node(col_name):     G.add_node(col_name , label= col_name, type='Column')
                     
-            n_grams = [gr.replace(' ','_') for gr in find_all_n_grams(str(cl),configuration['tokens'])]
+                n_grams = [gr.replace(' ','_') for gr in find_all_n_grams(str(cl),configuration['tokens'])]
+
+                for tg in n_grams:
+                    if not G.has_node(tg): G.add_node(tg,label=tg, type='Data')
+                    G.add_edge(doc_name,tg)
+                    G.add_edge(col_name,tg)
+        else:
+            n_grams = [gr.replace(' ','_') for gr in find_all_n_grams(str(doc),configuration['tokens'])]
 
             for tg in n_grams:
                 if not G.has_node(tg): G.add_node(tg,label=tg, type='Data')
                 G.add_edge(doc_name,tg)
-                if configuration['scenario'] == 't2d':  G.add_edge(col_name,tg)
+
     
     i = 0
-    md2_ids = {}
-    id_md2 = {}
 
     for doc in tqdm(secondDocs):
+        text = doc.lower()
         i += 1
-        text = remove_stopwords(doc)
         doc_name = str('SM'+str(i))
+        metadata_maps[doc_name] = text
+        metadata_maps[text] = doc_name
+
         G.add_node(doc_name , label= doc_name, type='Metadata2')
-        md2_ids[doc_name] = doc
-        id_md2[doc] = doc_name
 
         n_grams = [gr.replace(' ','_') for gr in find_all_n_grams(text,configuration['tokens'])]
 
@@ -54,16 +61,17 @@ def graph_generator(firstDocs,secondDocs,configuration ):
 
             if not G.has_edge(doc_name,token):            G.add_edge(doc_name,token)
           
+    #pickle.dump(metadata_maps,open('graphs/metadata_maps.pkl','wb'))
+    return G,metadata_maps
 
-    return G
+
 
 def generate_walks(G,configuration):
     rws = []
     
     for i in tqdm(range(0,configuration['random_walks']),position=0):
         for node in G.nodes():
-            if len([n for n in nx.neighbors(G,node)]) == 0:
-                continue
+            if len([n for n in nx.neighbors(G,node)]) == 0:                continue
             if G.node[node]['type'] not in ['Data']:
                 rws.append(random_walk(G,node,configuration['length']))
     return rws
@@ -78,8 +86,8 @@ def random_walk(G,node,l):
 
     while (p<l):
         chosen = random.sample([n for n in nx.neighbors(G,chosen)],1)[0]
-        if G.node[chosen]['type'] in ['Claim','Fact','Token']:
-            res += ' ' + str(chosen)
+        #if G.node[chosen]['type'] not in ['Data']:
+        res += ' ' + str(chosen)
         p+=1
         
     return res
