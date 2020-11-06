@@ -24,7 +24,7 @@ args = parse_args()
 
 
 
-G = nx.read_gml(args.graph_address)
+G = nx.read_yaml(args.graph_address)
 maps = pickle.load(open(args.graph_address.split('.')[0]+'_metadata.pkl','rb'))
 
 if args.model_type == 'ft': model = FastText.load(args.model_address)
@@ -40,7 +40,6 @@ else: results = compare_lists(model,md1,md2)
 
 if args.golds is not None:
     golds = pickle.load(open(args.golds,'rb'))
-
     for K in [1,3,5,20,50]:
         print("##################### TOP-"+str(K)+" ##################")
         print(evaluate_results (results,golds,maps,K),'\n')

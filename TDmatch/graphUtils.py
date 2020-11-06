@@ -18,7 +18,6 @@ def graph_generator(firstDocs,secondDocs,configuration ):
 
         metadata_maps[doc_name] = text
         metadata_maps[text] = doc_name
-
         G.add_node(doc_name , label= doc_name, type='Metadata1')
 
         j=0

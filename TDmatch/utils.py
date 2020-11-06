@@ -17,10 +17,16 @@ def evaluate_results(preds,golds,maps,K):
     i=0
     MP,MR,HASP = 0,0,0
     for md in preds:
-        if maps[md] not in golds:  continue
+        if maps[md] not in golds:  
+            #print(maps[md])
+            continue    
         i+=1
-        pr = [maps[m] for (m,score) in preds[md]][0:K]
-        gd = golds[maps[md]]
+        pr = [normalize_text(maps[m]) for (m,score) in preds[md]][0:K]
+        try:
+            gd = [normalize_text(g) for g in golds[maps[md]]]
+        except:
+            continue
+            print('not in vocab')
         MP += MAP_K(gd,pr)
         MR += MRR(gd,pr)
         HASP += HAS_POSITIVE(gd,pr)
@@ -62,7 +68,7 @@ def read_csv(file,hasHeader):
             next(csv_reader)
         for r in csv_reader:
             if type(r) == list and len(r)>1: all_claims.append([str(rr).lower() for rr in r])
-            else: all_claims.append(str(r[0]).lower())
+            else: all_claims.append(r[0].lower())
 
     return all_claims
 

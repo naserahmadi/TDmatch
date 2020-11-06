@@ -34,6 +34,6 @@ docs2 = read_csv(args.second_file,True)
 
 graph = graph_generator(docs,docs2,configuration)
 
-nx.write_gml(graph[0],'graphs/' + args.output_file+'.gml')
+nx.write_yaml(graph[0],'graphs/' + args.output_file+'.yml')
 pickle.dump(graph[1],open('graphs/'+args.output_file+'_metadata.pkl','wb'))
 

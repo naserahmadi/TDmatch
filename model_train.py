@@ -37,7 +37,7 @@ configuration = {
 
 
 
-G = nx.read_gml(args.graph_file)
+G = nx.read_yaml(args.graph_file)
 
 random_walks = generate_walks(G,configuration)
 if configuration['save_walks']:
