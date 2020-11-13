@@ -17,9 +17,7 @@ def evaluate_results(preds,golds,maps,K):
     i=0
     MP,MR,HASP = 0,0,0
     for md in preds:
-        if maps[md] not in golds:  
-            #print(maps[md])
-            continue    
+        if maps[md] not in golds:  continue    
         i+=1
         pr = [normalize_text(maps[m]) for (m,score) in preds[md]][0:K]
         try:

@@ -12,7 +12,7 @@ def graph_generator(firstDocs,secondDocs,configuration ):
 
     for doc in tqdm(firstDocs):
         i+=1
-        if type(doc) ==list: text = ' '.join([r for r in doc])
+        if type(doc) ==list and len(doc)>1: text = ' '.join([r for r in doc])
         else: text = doc.lower()
         doc_name = str('FM'+str(i))
 
