@@ -23,7 +23,6 @@ def parse_args():
 args = parse_args()
 
 
-
 G = nx.read_yaml(args.graph_address)
 maps = pickle.load(open(args.graph_address.split('.')[0]+'_metadata.pkl','rb'))
 
@@ -35,7 +34,7 @@ for n in G.nodes():
     if G.nodes()[n]['type'] == 'Metadata1': md1.append(n)
     elif G.nodes()[n]['type'] == 'Metadata2': md2.append(n)
 
-if args.direction == 'r2l':    results = compare_lists(model,md2[0:100],md1)
+if args.direction == 'r2l':    results = compare_lists(model,md2,md1)
 else: results = compare_lists(model,md1,md2)
 
 if args.golds is not None:
