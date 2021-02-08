@@ -68,6 +68,8 @@ def cosine_distance (model, word,target_list , num) :
             b = model.infer_vector(word_tokenize(normalize_text(item)))
             
 
+            #cos_sim = dot(a, b)/(norm(a)*norm(b))
+            #cosine_dict[item] = cos_sim
             cosine_dict[item] = spatial.distance.cosine(a, b)
             
     dist_sort=sorted(cosine_dict.items(), key=lambda dist: dist[1],reverse = True)
