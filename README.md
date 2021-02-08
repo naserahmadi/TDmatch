@@ -18,7 +18,7 @@ The repository includes a collection of scripts to generate files needed to perf
 
 We used 4 datasets in testing different tasks:
  * Two fact checking datasets: **Politifact** and **Snopes** which we use for Text to Text matching. These datasets are presented in [That-is-a-Known-Lie](https://github.com/sshaar/That-is-a-Known-Lie)
- * Two datasets for Text to Data matching: **IMDB** which is created form  [IMDB top 250 movies of all time](https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&view=simple). **CoronaCheck** dataset is presented in [Scrutinizer](https://github.com/geokaragiannis/statchecker)
+ * Two datasets for Text to Data matching: **IMDB** which is created form  [IMDB top 1000 movies of all time](https://www.imdb.com/search/title/?groups=top_1000&sort=user_rating,desc&view=simple). **CoronaCheck** dataset is presented in [Scrutinizer](https://github.com/geokaragiannis/statchecker)
 
 
 # How to run
