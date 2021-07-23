@@ -32,7 +32,7 @@ All the notebooks have the similar structure:
 # Using `SSuM` compression
 * First install the library following instructions [Here](https://github.com/KyuhanLee/SSumM)
 * Use the code in `SSuM` block to generate input
-* Generate the compressed graph: ``./run.sh input path compression ratio reconstruction error``  
+* Generate the compressed graph: ``./run.sh input_path compression_ratio reconstruction_error``  
 
 
 
