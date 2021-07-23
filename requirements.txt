@@ -2,3 +2,6 @@ gensim
 networkx
 numba
 tqdm
+SPARQLWrapper
+conceptnet_lite
+

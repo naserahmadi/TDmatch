@@ -2,7 +2,12 @@ import re
 import pickle
 
 import re
+
+stp = [',','.','[',']','(',')','\'']
+
 def normalize_text(text):
+    text = str(text)
+    for s in stp:        text = text.replace(s,' ')
     text = re.sub(r'#+', ' ', text )
     text = re.sub(r'@[A-Za-z0-9]+', ' ', text)
     #text = re.sub(r'[0-9]+', '', text)
