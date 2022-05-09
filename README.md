@@ -39,5 +39,19 @@ All the notebooks have the similar structure:
 # Expanding with ConceptNet
 * After installing [conceptnet_lite](https://github.com/ldtoolkit/conceptnet-lite), download ConceptNet DB from [this link](https://conceptnet-lite.fra1.cdn.digitaloceanspaces.com/conceptnet.db.zip)
 
+# Reference
+This work is described in our icde [paper](https://www.eurecom.fr/publication/6767) and you can cite it:
+
+```
+ @conference{EURECOM+6767,
+  author = {Ahmadi, Naser and  Sand, Hansjorg and  Papotti, Paolo},
+  title = {Unsupervised matching of data and text},
+  booktitle = {ICDE 2022, 38th IEEE International Conference on Data Engineering, 9-12 May 2022, Kuala Lumpur, Malaysia (Virtual Event)},
+  year = {2022},
+  editor = {IEEE}
+}
+```
+
+
 
 
