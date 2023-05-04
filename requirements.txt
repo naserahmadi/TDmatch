@@ -1,7 +1,10 @@
-gensim
+gensim==3.8.3
 networkx
 numba
 tqdm
 SPARQLWrapper
 conceptnet_lite
-
+nltk
+sentence_transformers
+deepmatcher
+conceptnet_lite

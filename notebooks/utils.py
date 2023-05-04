@@ -30,6 +30,7 @@ def normalize_text(text):
 from gensim.parsing.preprocessing import remove_stopwords
 
 import nltk
+nltk.download('all')
 ps = nltk.stem.PorterStemmer()
 
 
